@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sloppy® — Apparel Store</title>
+<meta name="description" content="Sloppy® — carefully designed apparel. Umduvulo tees, Sloppy signature pieces, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">Free shipping over <strong>R800</strong> <span class="dot">◆</span> WhatsApp orders: <strong>079 487 4559</strong></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="https://i.imgur.com/hIi4UrM.png" alt="Sloppy® Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-family:var(--display);font-size:1.9rem;color:#fff;text-transform:uppercase;letter-spacing:.02em;\'>Sloppy<sup style=\'color:var(--gold);font-size:.4em;vertical-align:super;margin-left:2px;\'>®</sup></span>';">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#shop">Shop</a>
+      <a href="#coming">Coming Soon</a>
+      <a href="#why">Why</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="focusSearch()" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn" onclick="openWishlist()" aria-label="Wishlist">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span class="count" id="wishCount" data-empty="true"></span>
+      </button>
+      <button class="icon-btn" onclick="openCart()" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="count" id="cartCount" data-empty="true"></span>
+      </button>
+      <button class="hamburger" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow reveal">Sloppy® — Est. 2020</span>
+  <h1 class="reveal">Built <em>Different.</em></h1>
+  <p class="hero-sub reveal">More Than Clothing. It's a Mindset.</p>
+  <p class="hero-desc reveal">Signature apparel by the Sloppy team. Umduvulo tees, Sloppy originals, and pieces made to be lived in.</p>
+  <a href="#shop" class="hero-cta reveal">
+    Shop the Collection
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+<!-- SHOP -->
+<section class="shop" id="shop">
+  <div class="section-head reveal">
+    <div class="titles">
+      <span class="eyebrow">Collection</span>
+      <h2>The Signature Line</h2>
+      <p>Carefully considered pieces, made to be lived in.</p>
+    </div>
+  </div>
+  <div class="controls reveal">
+    <div class="filter-chips" id="filterChips">
+      <button class="chip active" data-filter="All">All</button>
+      <button class="chip" data-filter="Umduvulo">Umduvulo</button>
+      <button class="chip" data-filter="Sloppy">Sloppy</button>
+      <button class="chip" data-filter="Pre-order">Pre-order</button>
+    </div>
+    <div class="controls-right">
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products..." oninput="onSearch(this.value)">
+      </div>
+      <select class="sort-select" id="sortSelect" onchange="onSort(this.value)">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name">Name: A–Z</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<!-- COMING SOON -->
+<section class="coming-soon" id="coming">
+  <div class="cs-card reveal">
+    <div>
+      <span class="cs-tag">Coming Soon</span>
+      <h3>Sabali <em>Watch Range</em></h3>
+      <p>A considered timepiece collection from Sloppy. Quietly arriving — join the list to hear first.</p>
+    </div>
+    <a href="https://wa.me/27794874559?text=Hi%20Sloppy!%20Please%20notify%20me%20when%20the%20Sabali%20watch%20range%20drops." target="_blank" rel="noopener" class="cs-btn">
+      Notify me
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- EDITORIAL -->
+<section class="editorial reveal" id="why">
+  <div class="editorial-inner">
+    <span class="editorial-eyebrow">Why Sloppy</span>
+    <p>Created by the <em>Sloppy team</em>, this store and signature collection celebrates our collective creativity and passion for apparel. Carefully designed, quietly confident.</p>
+    <div class="editorial-sign">— The Sloppy Team</div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter reveal">
+  <div>
+    <h2>Join the <em>quiet</em> side.</h2>
+    <p>Early access to drops, restocks, and the occasional note from the studio.</p>
+  </div>
+  <div id="nlWrap">
+    <form class="nl-form" onsubmit="subscribe(event)">
+      <div class="nl-input-wrap">
+        <input type="email" class="nl-input" id="nlEmail" placeholder="your@email.com" required>
+        <button type="submit" class="nl-submit">
+          Subscribe
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <small class="nl-note">No spam. Unsubscribe anytime.</small>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner reveal">
+    <span class="eyebrow">Get in touch</span>
+    <h2>Say <em>hello.</em></h2>
+    <p>For orders, enquiries, and collabs.</p>
+    <div class="contact-grid">
+      <a href="https://www.facebook.com/Sloppywear" target="_blank" rel="noopener" class="contact-card">
+        <span class="label">Facebook</span><span class="value">/Sloppywear</span><span class="arrow">→</span>
+      </a>
+      <a href="https://wa.me/27794874559" target="_blank" rel="noopener" class="contact-card">
+        <span class="label">WhatsApp</span><span class="value">079 487 4559</span><span class="arrow">→</span>
+      </a>
+      <a href="tel:0794874559" class="contact-card">
+        <span class="label">Call</span><span class="value">079 487 4559</span><span class="arrow">→</span>
+      </a>
+      <a href="mailto:mphelamlangeni@gmail.com" class="contact-card">
+        <span class="label">Email</span><span class="value">mphelamlangeni</span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-logo">
+    <img src="https://i.imgur.com/hIi4UrM.png" alt="Sloppy® Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-family:var(--display);font-size:1.5rem;color:#fff;text-transform:uppercase;letter-spacing:.02em;\'>Sloppy<sup style=\'color:var(--gold);font-size:.4em;vertical-align:super;margin-left:2px;\'>®</sup></span>';">
+  </span>
+  <span>© 2026 Sloppy® — All Rights Reserved.</span>
+</footer>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- CART DRAWER -->
+<aside class="drawer" id="cartDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>Your Bag <span id="cartDrawerCount">(0)</span></h3>
+    <button class="close-btn" onclick="closeCart()" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="ship-bar" id="shipBar" style="display:none">
+    <div class="ship-text" id="shipText"></div>
+    <div class="ship-track"><div class="ship-fill" id="shipFill"></div></div>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot" style="display:none">
+    <div class="subtotal"><span>Subtotal</span><strong id="subtotal">R0</strong></div>
+    <button class="checkout-btn" onclick="checkout()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Checkout via WhatsApp
+    </button>
+    <small>You'll be redirected to WhatsApp to confirm.</small>
+  </div>
+</aside>
+
+<!-- WISHLIST DRAWER -->
+<aside class="drawer" id="wishDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>Wishlist <span id="wishDrawerCount">(0)</span></h3>
+    <button class="close-btn" onclick="closeWishlist()" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="wishBody"></div>
+</aside>
+
+<!-- MODAL -->
+<div class="modal" id="productModal">
+  <div class="modal-inner" id="modalInner"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastMsg">Added</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
